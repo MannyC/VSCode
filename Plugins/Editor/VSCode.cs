@@ -714,11 +714,9 @@ namespace dotBunny.Unity
             if (content.Length == 0)
                 return "";
 
-            // Make sure our reference framework is 2.0, still the base for Unity
-            if (content.IndexOf("<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>") != -1)
-            {
-                content = Regex.Replace(content, "<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>", "<TargetFrameworkVersion>v2.0</TargetFrameworkVersion>");
-            }
+            // Use a target framework of 3.5 as using 2.0 breaks OmniSharp 
+            content = Regex.Replace(content, "<TargetFrameworkVersion>v..5</TargetFrameworkVersion>", "<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>");
+            
 
             string targetPath = "";// "<TargetPath>Temp" + Path.DirectorySeparatorChar + "bin" + Path.DirectorySeparatorChar + "Debug" + Path.DirectorySeparatorChar + "</TargetPath>"; //OutputPath
             string langVersion = "<LangVersion>default</LangVersion>";
